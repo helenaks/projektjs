@@ -197,7 +197,41 @@ function create_language_filter() {
 // CODE according to specifications
 function create_programme(programme) {
 
+    const university = UNIVERSITIES.find(function (university) {
+        if (university.id == programme.universityID) return true;
+    });
+
+    const city = CITIES.find(function (city) {
+        if (city.id == university.cityID) return true;
+    });
+
+    const country = COUNTRIES.find(function (country) {
+        if (country.id == city.countryID) return true;
+    });
+
+    const subject = SUBJECTS.find(function (subject) {
+        if (subject.id == programme.subjectID) return true;
+    });
+
+    const language = LANGUAGES.find(function (language) {
+        if (language.id == programme.languageID) return true;
+    });
+
+    const level = LEVELS.find(function (level) {
+        if (level.id == programme.levelID) return true;
+    });
+
+    const elementprogramme = document.createElement("li");
+
+    elementprogramme.innerHTML =
+        `<h1>${programme.name}</h1>
+    <p>${university.name}</p>
+    <p>${city.name},${country.name}</p>
+    <p>${level.name}, ${subject.name}, ${language.name}</p>`;
+    document.querySelector("#programmes>ul").append(elementprogramme)
+
     /*
+
   
       ARGUMENT
         programme (object): One of the objects from PROGRAMMES
@@ -224,7 +258,11 @@ function create_programme(programme) {
 // G
 // CODE according to the specification
 function update_programmes() {
-
+    const programmes = read_filters();
+    programmes.forEach(function (programme) {
+        create_programme(programme)
+    }
+    )
     /*
         NO ARGUMENTS
   
