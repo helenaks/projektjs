@@ -28,6 +28,16 @@ function click_filter_element(event) {
 // CODE according to specification
 function create_filter_element(data) {
 
+    const element = document.createElement("li");
+    element.classList.add(data.class);
+    data.parent.append(element);
+    element.textContent = data.textContent;
+    element.addEventListener("click", click_filter_element);
+
+    return element;
+
+
+
     /*
       ARGUMENTS
         data: object that contains the following keys:
