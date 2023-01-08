@@ -117,7 +117,28 @@ function toggle_cities(event) {
 // WRITE SPECIFICATION
 // ATTENTION: You need to write the specification of all three functions:
 //            create_countries_cities_filters, create_country and create_city
+
+/*
+NO ARGUMENTS
+
+SIDE EFFECTS 
+create dom-elements (countries and cities filters)
+
+NO RETURN
+*/
 function create_countries_cities_filters() {
+
+    /*
+ARGUMENTS
+country: to grab the id of the country and put it as an id for the element
+
+SIDE EFFECTS
+creates dom-element and adds two classnames
+adds an id to the dom-element, the id is taken from the argument.
+Appends the dom-element to an ul-element that has parent-element with the id country_filter
+Sets the dom-element to the html, country.name inside <h1> and ul with classname filter_list
+RETURN
+*/
     function create_country(country) {
         const dom = document.createElement("div");
         dom.classList.add("country");
@@ -129,7 +150,6 @@ function create_countries_cities_filters() {
         <h1>${country.name}</h1>
         <ul class="filter_list"></ul>
       `;
-
         const cities = array_filter(CITIES, test_function);
         function test_function(city) {
             return city.countryID === country.id;
@@ -137,6 +157,11 @@ function create_countries_cities_filters() {
 
         array_each(cities, create_city);
     }
+    /*
+ARGUMENTS
+
+NO RETURN
+*/
     function create_city(city) {
 
         const dom = create_filter_element({
@@ -156,6 +181,9 @@ function create_countries_cities_filters() {
 // ABSTRACT AND WRITE SPECIFICATION
 //    As you can see, all three functions below do basically the same thing.
 //    Abstract them to one function, and write the specification of that function.
+
+
+
 function create_levels_filter() {
     function create_level(level) {
         const dom = create_filter_element({
@@ -295,7 +323,28 @@ function update_programmes() {
 // WRITE SPECIFICATION
 // You must understand how this function works. There will be questions about it
 // in the code review (kodredovisning)
+/*
+   NO ARGUMENTS
+     
+ 
+   SIDE-EFFECTS
+       It selects all list-items in the element with an id country_filter.
 
+       callback_add_cityID takes id-number from the element and pushes it to city_id_selected array
+
+       array_each is a function that loops through the selected list-items and executes callback_id_city
+
+
+       Creates a new dom-element with the tag "li".
+       Gives the new dom-element the class contained in data.class
+       Appends the new dom-element to the element referenced in data.parent
+       Sets the text content of the new dom-element to data.textContent
+       Sets the function click_filter_element as a listener to "click" for the new dom-element
+ 
+   RETURN VALUE
+       RETURN a list(array) of programs based on the selected filters,
+       if nothing is selected it returns an empty list.
+   */
 
 
 
