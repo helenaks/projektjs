@@ -224,7 +224,26 @@ function create_programme(programme) {
 // G
 // CODE according to the specification
 function update_programmes() {
+<<<<<<< Updated upstream
 
+=======
+    const programmes = read_filters();
+
+    if (programmes.length < 1) {
+
+        document.querySelector('#programmes > p').style.display = 'block';
+    } else {
+        document.querySelector('#programmes > p').style.display = 'none';
+    }
+
+    const programmesContainer = document.querySelector("#programmes > ul");
+    programmesContainer.innerHTML = "";
+
+    programmes.forEach(function (programme) {
+        create_programme(programme)
+    }
+    )
+>>>>>>> Stashed changes
     /*
         NO ARGUMENTS
   
@@ -247,8 +266,9 @@ function update_programmes() {
 // You must understand how this function works. There will be questions about it
 // in the code review (kodredovisning)
 
-// Optional VG: Which parts of the function's code could be abstracted?
-//              Implement it
+
+
+
 function read_filters() {
 
     const city_selected_dom = document.querySelectorAll("#country_filter li.selected");
