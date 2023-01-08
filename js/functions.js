@@ -1,7 +1,6 @@
 "use strict"
 
 
-
 function click_filter_element(event) {
 
     const classList = event.currentTarget.classList;
