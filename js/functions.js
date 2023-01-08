@@ -224,9 +224,6 @@ function create_programme(programme) {
 // G
 // CODE according to the specification
 function update_programmes() {
-<<<<<<< Updated upstream
-
-=======
     const programmes = read_filters();
 
     if (programmes.length < 1) {
@@ -243,7 +240,6 @@ function update_programmes() {
         create_programme(programme)
     }
     )
->>>>>>> Stashed changes
     /*
         NO ARGUMENTS
   
