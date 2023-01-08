@@ -182,7 +182,33 @@ NO RETURN
 //    As you can see, all three functions below do basically the same thing.
 //    Abstract them to one function, and write the specification of that function.
 
+/*
+  ARGUMENTS
+    programmesSpecs: LANGUAGES, LEVELS or SUBJECTS
+    filterId: the id of the parent-element of the filters. 
 
+  SIDE-EFFECTS
+
+  creates dom-elements (filters)
+   
+
+  NO RETURN
+
+*/
+
+function createFilters(programmesSpecs, filterId) {
+    function create_filter(filter) {
+        const dom = create_filter_element({
+            parent: document.querySelector(`#${filterId} > ul`),
+            class: "selected",
+            textContent: filter.name,
+        });
+
+        dom.dataset.id = filter.id;
+    }
+
+    array_each(programmesSpecs, create_filter);
+}
 
 function create_levels_filter() {
     function create_level(level) {
