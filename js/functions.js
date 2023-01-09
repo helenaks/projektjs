@@ -30,52 +30,33 @@ function create_filter_element(data) {
 }
 
 
-// VG
-// CODE according to specification
+
 function add_group_toggling(filter_container_dom) {
 
-    /*
-      ARGUMENT
-        filter_container_dom: reference to a HTML-element that contains a set of fliter_elements
-              Exempel: the <ul> that contains the filters for Language.
-  
-      SIDE EFFECTS
-        The function makes sure that when the user clicks on filter_container_dom, all the
-        filter_elements that it contains are selected / unselected.
-        Since some filter elements will have changed after the click, the list of
-        programmes must be updated.
-  
-      NO RETURN VALUE
-  
-    */
 
 }
 
 
-// VG
-// CODE according to specifications
+
 function toggle_cities(event) {
+    const allCities = document.querySelectorAll(
+        "#country_filter > ul > div > ul > li"
+    );
+    const madridCity = allCities[0];
+    if (madridCity.classList.contains("selected")) {
+        for (let i = 0; i < allCities.length; i++) {
+            allCities[i].classList.remove("selected");
+        }
+    } else {
+        for (let i = 0; i < allCities.length; i++) {
+            allCities[i].classList.add("selected");
+        }
+    }
 
-    /*
-  
-      ARGUMENTS
-        This function does not take any arguments
-  
-      SIDE EFFECTS
-        This function checks the state of the first city-filter-element (Madrid).
-        If it is selected then it de-selects ALL city-filter-elements
-        If it is de-selected then it selects ALL city-filter-elements 
-  
-      NO RETURN VALUE
-  
-    */
+    update_programmes();
 
 }
 
-
-// WRITE SPECIFICATION
-// ATTENTION: You need to write the specification of all three functions:
-//            create_countries_cities_filters, create_country and create_city
 
 /*
 NO ARGUMENTS
@@ -89,16 +70,19 @@ function create_countries_cities_filters() {
 
     /*
 ARGUMENTS
-country: to grab the id of the country and put it as an id for the element
+country: object that contains id, name and imagesNormal.
 
 SIDE EFFECTS
 creates dom-element and adds two classnames
 adds an id to the dom-element, the id is taken from the argument.
 Appends the dom-element to an ul-element that has parent-element with the id country_filter
 Sets the dom-element to the html, country.name inside <h1> and ul with classname filter_list
-RETURN
+Finds which cities satisfies the test and then loops through every city with the above steps. 
+
+NO RETURN
 */
     function create_country(country) {
+        console.log(country);
         const dom = document.createElement("div");
         dom.classList.add("country");
         dom.classList.add("filter_container");
@@ -118,10 +102,19 @@ RETURN
     }
     /*
 ARGUMENTS
+city: object that contains id, name, countryId and imagesNormal
+
+SIDE EFFECTS: 
+Calls create_filter_element to create a city filter element, takes object as an argument 
+with parent, class and textContent keys. 
+Sets dataset id to city id. 
+Calls the function create_country once for each element in the COUNTRIES array, 
+with the element as argument
 
 NO RETURN
 */
     function create_city(city) {
+        console.log(city);
 
         const dom = create_filter_element({
             parent: document.querySelector(`#country_${city.countryID} > ul`),
@@ -135,11 +128,6 @@ NO RETURN
     array_each(COUNTRIES, create_country);
 }
 
-
-// G
-// ABSTRACT AND WRITE SPECIFICATION
-//    As you can see, all three functions below do basically the same thing.
-//    Abstract them to one function, and write the specification of that function.
 
 /*
   ARGUMENTS
@@ -180,7 +168,7 @@ function create_levels_filter() {
     }
     array_each(LEVELS, create_level);
 }
-// Create Subjects Filter
+
 function create_subjects_filter() {
     function create_subject(subject) {
         const dom = create_filter_element({
@@ -192,7 +180,7 @@ function create_subjects_filter() {
     }
     array_each(SUBJECTS, create_subject);
 }
-// Create Search Field
+
 function create_language_filter() {
     function create_element(data) {
         const dom = create_filter_element({
@@ -264,10 +252,7 @@ function update_programmes() {
 }
 
 
-// G
-// WRITE SPECIFICATION
-// You must understand how this function works. There will be questions about it
-// in the code review (kodredovisning)
+
 /*
    NO ARGUMENTS
      
@@ -285,8 +270,6 @@ function update_programmes() {
        RETURN a list(array) of programs based on the selected filters,
        if nothing is selected it returns an empty list.
    */
-
-
 
 function read_filters() {
 
